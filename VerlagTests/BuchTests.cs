@@ -101,6 +101,17 @@ namespace VerlagTests
         [DataRow("§")]
         [DataRow("%")]
         [ExpectedException(typeof(ArgumentException))]
+        public void Autor_NurSinnvolleEingabenErlaubt(string unerlaubtesZeichen)
+        {
+            //Arange
+            Random zufall = new Random();
+            string autor = "xqcL";
+            int zahl = zufall.Next(autor.Length);
+            autor = autor.Insert(zahl, unerlaubtesZeichen);
+
+            //Act
+            Buch b = new Buch(autor, "titel");
+        }
 
         //[TestMethod]
         //[ExpectedException(typeof(ArgumentNullException))]
