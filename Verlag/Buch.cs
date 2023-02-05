@@ -11,7 +11,7 @@ namespace Verlag
         private string autor;
         private string titel;
         private int auflage;
-        private string isbn;
+        private string isbn13;
 
         public Buch(string autor, string titel) 
         {
@@ -29,9 +29,16 @@ namespace Verlag
         {
             set
             {
-                isbn = value;
+                if (isbn13.Length == 13)
+                {
+                    isbn13 = value;
+                }
+                else
+                {
+                    throw new Exception("ISBN13 länge stimmt nicht ein! ISBN13 muss 13 Charaktere lang sein.");
+                }
             }
-            get { return isbn; }
+            get { return isbn13; }
         }
 
         public string Autor
