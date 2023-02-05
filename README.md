@@ -22,3 +22,5 @@ Entwerfen Sie – dem TDD-Paradigma folgendend - geeignete Testmethoden, um die 
     - Für alle Bücher soll eine ISBN-13 eingegeben werden können. Z.B.: 978-3770436163
     - Wenn die ISBN-13 ohne Prüfziffer eingegeben wird, soll diese automatisch ergänzt werden. Z.B.: 978-377043614 --> 978-3770436149
     - Aus der ISBN13 soll die ISBN 10 errechnet werden können. Z.B.: 978-3770436064 --> 3770436067
+
+boop
