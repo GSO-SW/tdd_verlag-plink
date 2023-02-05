@@ -1,4 +1,8 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Verlag
 {
@@ -7,51 +11,57 @@ namespace Verlag
         private string autor;
         private string titel;
         private int auflage;
+        private string isbn;
+
+        public Buch(string autor, string titel)
+        {
+            Autor = autor;
+            this.titel = titel;
+            this.auflage = 1;
+        }
+
+        public Buch(string autor, string titel, int auflage) : this(autor, titel)
+        {
+            this.Auflage = auflage;
+        }
+
+        public string ISBN
+        {
+            set
+            {
+                isbn = value;
+            }
+            get { return isbn; }
+        }
 
         public string Autor
         {
+            get { return autor; }
+
             set
             {
                 autor = value;
             }
-            get
-            {
-                return autor;
-            }
         }
 
-            public string Titel
+        public string Titel
         {
-            get
-            {
-                return titel;
-            }
+            get { return titel; }
         }
 
         public int Auflage
         {
+            get { return auflage; }
             set
             {
-                if (value < 1)
+                if (value > 0)
                 {
-                    throw new ArgumentOutOfRangeException("Auflage darf nicht kleiner als 1 sein.");
-                }
-                else
-                {
-                    this.auflage= value;
-                }
-            }
-            get
-            {
-                return auflage;
-            }
-        }
 
-        public Buch(string autor, string titel, int auflage)
-        {
-            this.autor = autor;
-            this.titel = titel;
-            Auflage = auflage;
+                    auflage = value;
+                }
+                else throw new ArgumentOutOfRangeException();
+
+            }
         }
     }
 }
