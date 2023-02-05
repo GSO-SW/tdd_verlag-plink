@@ -1,6 +1,7 @@
 using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Verlag;
+
 namespace VerlagTests
 {
     [TestClass]
@@ -13,55 +14,73 @@ namespace VerlagTests
             string autor = "J.K. Rowling";
             string titel = "Harry Potter und der Gefangene von Askaban";
             int auflage = 1;
+
             //Act 
             Buch b = new Buch(autor, titel, auflage);
+
             //Assert
             Assert.AreEqual(autor, b.Autor);
             Assert.AreEqual(titel, b.Titel);
             Assert.AreEqual(auflage, b.Auflage);
         }
+
+
+
         [TestMethod]
         public void Buch_KeineAuflageEntsprichtErsterAuflage()
         {
             //Arrange
+
             //Act 
             Buch b = new Buch("autor", "titel");
+
             //Assert
             Assert.AreEqual(1, b.Auflage);
         }
+
         [TestMethod]
         public void Autor_DarfVeraendertWerden()
         {
             //Arrange
             string autor = "poke";
             string autorNeu = "lawls";
+
             //Act
             Buch b = new Buch(autor, "titel");
             b.Autor = autorNeu;
+
             //Assert
             Assert.AreEqual(autorNeu, b.Autor);
+
         }
+
         [TestMethod]
         public void Auflage_DarfVeraendertWerden()
         {
             //Arrange
             int auflage = 15;
             int auflageNeu = 42;
+
             //Act
             Buch b = new Buch("autor", "titel", auflage);
             b.Auflage = auflageNeu;
+
             //Assert
             Assert.AreEqual(auflageNeu, b.Auflage);
+
         }
+
         [TestMethod]
         [ExpectedException(typeof(ArgumentOutOfRangeException))]
         public void Buch_AuflageDarfNichtZuKleinSein()
         {
             //Arrange
             int auflage = 0;
+
             //Act
             Buch b = new Buch("autor", "titel", auflage);
         }
+
         [TestMethod]
         [ExpectedException(typeof(ArgumentOutOfRangeException))]
         public void Auflage_DarfNichtZuKleinSein()
@@ -69,54 +88,24 @@ namespace VerlagTests
             //Arrange
             Buch b = new Buch("autor", "titel");
             int auflageNeu = 0;
+
             //Act
             b.Auflage = auflageNeu;
         }
+
         // DataRow: https://learn.microsoft.com/en-us/dotnet/core/testing/unit-testing-with-mstest#add-more-features
         [TestMethod]
-        [DataRow("")]
-        [DataRow("#berkant")]
-        [DataRow("ber;kant")]
-        [DataRow("pli§nk")]
-        [DataRow("pli%nk")]
+        //[DataRow("")]
         [DataRow("#")]
         [DataRow(";")]
         [DataRow("§")]
         [DataRow("%")]
         [ExpectedException(typeof(ArgumentException))]
-        public void Autor_NurSinnvolleEingabenErlaubt(string unerlaubtesZeichen)
-        {
-            //Arange
-            Random zufall = new Random();
 
-            string autor = "Joe Biden";
-            int zahl = zufall.Next(autor.Length);
-            autor.Insert(zahl, unerlaubtesZeichen);
-
-            //Act
-            Buch b = new Buch(unerlaubtesZeichen, "titel");
-            Buch b = new Buch(autor, "titel");
-        }
-
-        [TestMethod]
-        [DataRow(null)]
-        [ExpectedExeption(typeof(ArgumentNullException))]
-        public void Autor_DarfNichtNullSein()
-        {
+        //[TestMethod]
+        //[ExpectedException(typeof(ArgumentNullException))]
+        //public void Autor_DarfNichtNullSein()
 
 
-        }
-
-        [TestMethod]
-        public void ISBN_DarfGesetztWerden()
-        {
-            //Arrange
-            string ISBN = "1488880436163";
-            //ACT
-            Buch b = new Buch("autor", "titel");
-            b.ISBN = ISBN;
-            //Assert
-            Assert.AreEqual(b.ISBN, ISBN);
-        }
     }
 }

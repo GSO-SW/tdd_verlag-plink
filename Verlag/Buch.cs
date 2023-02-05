@@ -13,14 +13,14 @@ namespace Verlag
         private int auflage;
         private string isbn;
 
-        public Buch(string autor, string titel)
+        public Buch(string autor, string titel) 
         {
             Autor = autor;
             this.titel = titel;
             this.auflage = 1;
         }
 
-        public Buch(string autor, string titel, int auflage) : this(autor, titel)
+        public Buch(string autor, string titel,int auflage) : this(autor,titel)
         {
             this.Auflage = auflage;
         }
@@ -38,7 +38,7 @@ namespace Verlag
         {
             get { return autor; }
 
-            set
+            set 
             {
                 List<char> unerlaubtezeichen = new List<char>();
                 unerlaubtezeichen.Add('#');
@@ -46,13 +46,13 @@ namespace Verlag
                 unerlaubtezeichen.Add('§');
                 unerlaubtezeichen.Add('%');
 
-                foreach (char c in unerlaubtezeichen)
+                foreach(char c in unerlaubtezeichen)
                 {
                     if (value.Contains(c))
                     {
                         throw new ArgumentException();
                     }
-                    else if (value == null)
+                    else if(value == null)
                     {
                         throw new ArgumentNullException();
                     }
@@ -69,11 +69,11 @@ namespace Verlag
         public int Auflage
         {
             get { return auflage; }
-            set
+            set 
             {
                 if (value > 0)
                 {
-
+                    
                     auflage = value;
                 }
                 else throw new ArgumentOutOfRangeException();
