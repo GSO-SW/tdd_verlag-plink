@@ -40,6 +40,23 @@ namespace Verlag
 
             set
             {
+                List<char> unerlaubtezeichen = new List<char>();
+                unerlaubtezeichen.Add('#');
+                unerlaubtezeichen.Add(';');
+                unerlaubtezeichen.Add('§');
+                unerlaubtezeichen.Add('%');
+
+                foreach (char c in unerlaubtezeichen)
+                {
+                    if (value.Contains(c))
+                    {
+                        throw new ArgumentException();
+                    }
+                    else if (value == null)
+                    {
+                        throw new ArgumentNullException();
+                    }
+                }
                 autor = value;
             }
         }
